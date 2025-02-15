@@ -52,6 +52,7 @@ parts:
     override-build: |
       export LDFLAGS="${LDFLAGS} -X 'github.com/hashicorp/terraform/version.Prerelease='"
       export LDFLAGS="${LDFLAGS} -X 'github.com/hashicorp/terraform/version.Version=$(cat version/VERSION)'"
+      export LDFLAGS="${LDFLAGS} -X 'github.com/hashicorp/terraform/version.dev=no'"
 
       go mod download
       go build -ldflags "${LDFLAGS}"
