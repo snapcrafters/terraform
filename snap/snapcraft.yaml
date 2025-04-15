@@ -44,7 +44,7 @@ parts:
     source: https://github.com/hashicorp/terraform
     source-type: git
     source-tag: "v$SNAPCRAFT_PROJECT_VERSION"
-    build-snaps: [go]
+    build-snaps: [go/1.23/stable]
     build-environment:
       - CGO_ENABLED: "0"
       - GOFLAGS: "-mod=readonly"
