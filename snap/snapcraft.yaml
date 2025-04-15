@@ -40,16 +40,19 @@ platforms:
 
 parts:
   terraform:
-    plugin: go
+    plugin: nil
     source: https://github.com/hashicorp/terraform
     source-type: git
     source-tag: "v$SNAPCRAFT_PROJECT_VERSION"
-    build-snaps: [go/1.23/stable]
     build-environment:
       - CGO_ENABLED: "0"
       - GOFLAGS: "-mod=readonly"
       - LDFLAGS: "-s -w"
     override-build: |
+      # Determine the correct go version from the go.mod
+      go_version="$(grep -Po "^go \K1.[0-9]{2}" go.mod)"
+      snap install go --classic --channel "${go_version}/stable"
+
       export LDFLAGS="${LDFLAGS} -X 'github.com/hashicorp/terraform/version.Prerelease='"
       export LDFLAGS="${LDFLAGS} -X 'github.com/hashicorp/terraform/version.Version=$(cat version/VERSION)'"
       export LDFLAGS="${LDFLAGS} -X 'github.com/hashicorp/terraform/version.dev=no'"
