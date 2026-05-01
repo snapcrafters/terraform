@@ -27,6 +27,14 @@ confinement: classic
 compression: lzo
 icon: snap/gui/terraform.png
 
+# 'content' slot for allowing other snaps to use the Terraform binary
+slots:
+  terraform:
+    interface: content
+    content: terraform-binary
+    read:
+      - $SNAP
+
 apps:
   terraform:
     command: terraform
