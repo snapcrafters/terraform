@@ -1,5 +1,5 @@
 name: terraform
-version: 1.15.8
+version: 1.15.9
 summary: Terraform enables you to create, change, and improve infrastructure.
 license: BUSL-1.1
 contact: https://github.com/jnsgruk/terraform/issues
